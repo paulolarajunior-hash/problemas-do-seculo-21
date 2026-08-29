@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafios do Século 21 | Blog Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* VARIABLES & RESET */
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --text-muted: #94a3b8;
+      --neon-pink: #ff007f;
+      --neon-cyan: #00f3ff;
+      --neon-purple: #7b2cbf;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-color: #0f172a;
+      --text-muted: #64748b;
+      --border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+    }
+
+    /* HEADER & NAV */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      background-color: var(--bg-color);
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: 2px solid var(--neon-cyan);
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    }
+
+    .theme-toggle:hover {
+      background: var(--neon-cyan);
+      color: #0f172a;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* FILTERS */
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 8px var(--neon-pink);
+    }
+
+    /* BLOG GRID */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 0, 127, 0.15);
+      border-color: var(--neon-pink);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-header {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+
+    .tag-ia { background: rgba(0, 243, 255, 0.2); color: var(--neon-cyan); }
+    .tag-saude { background: rgba(255, 0, 127, 0.2); color: var(--neon-pink); }
+    .tag-clima { background: rgba(123, 44, 191, 0.2); color: #b5179e; }
+
+    .card-body h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      flex-grow: 1;
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">SÉCULO XXI</div>
+    <button class="theme-toggle" id="themeToggle">Modo Claro</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Navegando na Era da Complexidade</h1>
+      <p>Análises sobre tecnologia, sociedade e os desafios do mundo moderno.</p>
+    </section>
+
+    <div class="controls">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="ia">Inteligência Artificial</button>
+      <button class="filter-btn" data-filter="saude">Saúde Mental</button>
+      <button class="filter-btn" data-filter="clima">Clima & Recursos</button>
+    </div>
+
+    <div class="container">
+      <div class="blog-grid" id="blogGrid">
+        
+        <article class="card" data-category="ia">
+          <div class="card-header" style="background: linear-gradient(135deg, #00f3ff, #7b2cbf);">IA & Emprego</div>
+          <div class="card-body">
+            <span class="tag tag-ia">IA</span>
+            <h3>O Futuro do Trabalho Automatizado</h3>
+            <p>Como a evolução da inteligência artificial está redefinindo carreiras e criando novas demandas profissionais.</p>
+          </div>
+        </article>
+
+        <article class="card" data-category="saude">
+          <div class="card-header" style="background: linear-gradient(135deg, #ff007f, #7b2cbf);">Conectividade</div>
+          <div class="card-body">
+            <span class="tag tag-saude">Saúde Mental</span>
+            <h3>Hiperconexão e Solidão</h3>
+            <p>O paradoxo das redes sociais: nunca estivemos tão conectados e, ao mesmo tempo, tão isolados.</p>
+          </div>
+        </article>
+
+        <article class="card" data-category="clima">
+          <div class="card-header" style="background: linear-gradient(135deg, #7b2cbf, #00f3ff);">Sustentabilidade</div>
+          <div class="card-body">
+            <span class="tag tag-clima">Clima</span>
+            <h3>Transição Energética Global</h3>
+            <p>Os desafios tecnológicos e políticos para substituir matrizes poluentes por energias renováveis.</p>
+          </div>
+        </article>
+
+        <article class="card" data-category="ia">
+          <div class="card-header" style="background: linear-gradient(135deg, #ff007f, #00f3ff);">Privacidade</div>
+          <div class="card-body">
+            <span class="tag tag-ia">IA</span>
+            <h3>A Era da Vigilância de Dados</h3>
+            <p>Quem controla suas informações digitais e como a segurança da informação se tornou central na sociedade.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Blog Século XXI - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    // ALTERNADOR DE TEMA (DARK/LIGHT MODE)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      
+      if (currentTheme === 'light') {
+        document.body.removeAttribute('data-theme');
+        themeToggleBtn.textContent = 'Modo Claro';
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        themeToggleBtn.textContent = 'Modo Escuro';
+      }
+    });
+
+    // FILTRO DE CATEGORIAS
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remover classe ativa de todos os botões
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        // Exibir/Ocultar cards com base no filtro
+        cards.forEach(card => {
+          if (filterValue === 'todos' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
