@@ -1,0 +1,201 @@
+/* VARIÁVEIS DE CORES E CONFIGURAÇÕES */
+:root {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-color: #f8fafc;
+  --text-muted: #94a3b8;
+  --neon-pink: #ff007f;
+  --neon-cyan: #00f3ff;
+  --neon-purple: #7b2cbf;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] {
+  --bg-color: #f1f5f9;
+  --card-bg: #ffffff;
+  --text-color: #0f172a;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* RESET E BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.theme-toggle:hover {
+  background: var(--neon-cyan);
+  color: #0f172a;
+}
+
+/* HERO SECTION */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* BOTÕES DE FILTRO */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 8px var(--neon-pink);
+}
+
+/* GRADE DE POSTS */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 0, 127, 0.15);
+  border-color: var(--neon-pink);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-header {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.header-ia { background: linear-gradient(135deg, #00f3ff, #7b2cbf); }
+.header-saude { background: linear-gradient(135deg, #ff007f, #7b2cbf); }
+.header-clima { background: linear-gradient(135deg, #7b2cbf, #00f3ff); }
+.header-privacidade { background: linear-gradient(135deg, #ff007f, #00f3ff); }
+
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+}
+
+.tag-ia { background: rgba(0, 243, 255, 0.2); color: var(--neon-cyan); }
+.tag-saude { background: rgba(255, 0, 127, 0.2); color: var(--neon-pink); }
+.tag-clima { background: rgba(123, 44, 191, 0.2); color: #b5179e; }
+
+.card-body h3 {
+  margin-bottom: 0.5rem;
+}
+
+.card-body p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+/* RODAPÉ */
+footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
